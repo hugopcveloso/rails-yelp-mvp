@@ -1,0 +1,24 @@
+
+<h2>Restaurant <%= @restaurant.name %></h2>
+
+<p class = 'description'> <strong>Name: </strong> <%=@restaurant.name %> </p>
+<p> <strong>Adress: </strong> <%= @restaurant.address %> </p>
+<p> <strong>Contact: </strong> <%= @restaurant.phone_number %> </p>
+<p> <strong>Category: </strong> <%= @restaurant.category %> </p>
+</br>
+</br>
+<h3>Add a review!</h3>
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit "Add a review", class: "btn btn-primary" %>
+<% end %>
+</br>
+<ul>
+  <% @restaurant.reviews.reverse.each do |review| %>
+  <p class = 'm-1'>Review for <%= @restaurant.name %> </p>
+  <div class="card p-4 shadow-sm p-3 mb-5 bg-white rounded list-unstyled">
+    <li> <%= review.content %> <%= '*'*review.rating %>     </li>
+  </div>
+  <% end %>
+</ul>
